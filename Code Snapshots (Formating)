@@ -15,8 +15,8 @@ FORMATING =>
 
 measure 'CAGR % 21-24' =
 				
-				VAR EP = CALCULATE(SUM('Fact Baseline'[Value]),'Fact Baseline'[Attribute]="2024 NES")
-				VAR KP = CALCULATE(SUM('Fact Baseline'[Value]),'Fact Baseline'[Attribute]="2021 NES")
+				VAR EP = CALCULATE(SELECTEDMEASURE(),'Fact Baseline'[Attribute]="2024 NES")
+				VAR KP = CALCULATE(SELECTEDMEASURE(),'Fact Baseline'[Attribute]="2021 NES")
 				VAR Years = 2024-2021
 				RETURN
 				IF(HASONEVALUE('Fact Baseline'[Attribute])=TRUE(),BLANK(),POWER(DIVIDE(EP,KP),DIVIDE(1,Years))-1)
