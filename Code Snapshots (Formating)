@@ -22,3 +22,95 @@ measure 'CAGR % 21-24' =
 				IF(HASONEVALUE('Fact Baseline'[Attribute])=TRUE(),BLANK(),POWER(DIVIDE(EP,KP),DIVIDE(1,Years))-1)
 
 			formatString: 0.0%;-0.0%;0.0%
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////// Basic numbers
+formatString: "0"           // Integer: 1234
+formatString: "0.0"         // One decimal: 1234.5
+formatString: "0.00"        // Two decimals: 1234.56
+formatString: "0.000"       // Three decimals: 1234.567
+
+// With thousand separators
+formatString: "#,0"         // 1,234
+formatString: "#,0.0"       // 1,234.5
+formatString: "#,0.00"      // 1,234.56
+formatString: "#,##0.00"    // 1,234.56 (alternative)
+
+// General number (auto format)
+formatString: "General Number"
+formatString: "G"
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Percentage
+formatString: "0%"              // 75% (multiplies by 100)
+formatString: "0.0%"            // 75.5%
+formatString: "0.00%"           // 75.48%
+formatString: "Percent"         // Auto percentage
+
+// Without multiplication
+formatString: "0'%'"            // Shows as % but doesn't multiply
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////// Format: Positive;Negative;Zero
+formatString: "#,0.00;-#,0.00;0"
+formatString: "#,0.00;(#,0.00);'-'"
+
+// Format: Positive;Negative;Zero;Null
+formatString: "#,0.00;-#,0.00;0;'N/A'"
+
+// Conditional coloring (uses [Color])
+formatString: "[Green]#,0.00;[Red]-#,0.00;[Blue]0"
+
+// Conditional with thresholds
+formatString: "[>=1000000]$#,0,,\"M\";[>=1000]$#,0,\"K\";$#,0"
+// Shows: $5M, $750K, $500
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////// Thousands (K)
+formatString: "#,0,\"K\""                    // 1,234K
+formatString: "#,0.0,\"K\""                  // 1.2K
+
+// Millions (M)
+formatString: "#,0,,\"M\""                   // 1M
+formatString: "#,0.0,,\"M\""                 // 1.2M
+
+// Billions (B)
+formatString: "#,0,,,\"B\""                  // 1B
+formatString: "#,0.0,,,\"B\""                // 1.2B
+
+// Automatic scaling
+formatString: "#,0.0,,\"M\";-#,0.0,,\"M\""   // 1.2M or -1.2M
+```
+
+## **Format String Components**
+```
+0    - Digit placeholder (shows 0 if no digit)
+#    - Digit placeholder (shows nothing if no digit)
+.    - Decimal separator
+,    - Thousand separator
+%    - Multiply by 100 and show percent sign
+"    - Literal text delimiter
+\    - Escape character
+;    - Separator for positive;negative;zero;null
+[]   - Color or condition
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
