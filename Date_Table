@@ -1,6 +1,6 @@
 createOrReplace
 
-	table dDates
+	table Dates
 
 		column Date
 			formatString: yyyy-mm-dd
