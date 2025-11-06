@@ -12,7 +12,7 @@ createOrReplace
 			calculationItem 'Previous Year' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					SAMEPERIODLASTYEAR('Date'[Date])
+					SAMEPERIODLASTYEAR('Dates'[Date])
 				)
 				
 					
@@ -20,7 +20,7 @@ createOrReplace
 			calculationItem 'Year Over Year' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					SAMEPERIODLASTYEAR('Date'[Date])
+					SAMEPERIODLASTYEAR('Dates'[Date])
 				)
 				
 					
@@ -30,7 +30,7 @@ createOrReplace
 				VAR Previous_Year = 
 					CALCULATE(
 						SELECTEDMEASURE(),
-						SAMEPERIODLASTYEAR('Date'[Date])
+						SAMEPERIODLASTYEAR('Dates'[Date])
 					)
 				RETURN
 					DIVIDE(CurrentValue - Previous_Year, Previous_Year)
@@ -40,7 +40,7 @@ createOrReplace
 			calculationItem 'Year To Date' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					DATESYTD('Date'[Date])
+					DATESYTD('Dates'[Date])
 				)
 				
 					
@@ -48,8 +48,8 @@ createOrReplace
 			calculationItem 'Previous Year YTD' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					DATESYTD('Date'[Date]),
-					SAMEPERIODLASTYEAR('Date'[Date])
+					DATESYTD('Dates'[Date]),
+					SAMEPERIODLASTYEAR('Dates'[Date])
 				)
 				
 					
@@ -58,13 +58,13 @@ createOrReplace
 				VAR CurrentYTD = 
 					CALCULATE(
 						SELECTEDMEASURE(),
-						DATESYTD('Date'[Date])
+						DATESYTD('Dates'[Date])
 					)
 				VAR PreviousYTD = 
 					CALCULATE(
 						SELECTEDMEASURE(),
-						DATESYTD('Date'[Date]),
-						SAMEPERIODLASTYEAR('Date'[Date])
+						DATESYTD('Dates'[Date]),
+						SAMEPERIODLASTYEAR('Dates'[Date])
 					)
 				RETURN
 					DIVIDE(CurrentYTD - PreviousYTD, PreviousYTD)
@@ -74,7 +74,7 @@ createOrReplace
 			calculationItem 'Month To Date' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					DATESMTD('Date'[Date])
+					DATESMTD('Dates'[Date])
 				)
 				
 					
@@ -82,7 +82,7 @@ createOrReplace
 			calculationItem 'Quarter To Date' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					DATESQTD('Date'[Date])
+					DATESQTD('Dates'[Date])
 				)
 				
 					
@@ -90,7 +90,7 @@ createOrReplace
 			calculationItem 'Previous Month' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					DATEADD('Date'[Date], -1, MONTH)
+					DATEADD('Dates'[Date], -1, MONTH)
 				)
 				
 					
@@ -98,7 +98,7 @@ createOrReplace
 			calculationItem 'Previous Quarter' =
 				CALCULATE(
 					SELECTEDMEASURE(),
-					DATEADD('Date'[Date], -1, QUARTER)
+					DATEADD('Dates'[Date], -1, QUARTER)
 				)
 				
 					
@@ -107,8 +107,8 @@ createOrReplace
 				CALCULATE(
 					SELECTEDMEASURE(),
 					DATESINPERIOD(
-						'Date'[Date],
-						LASTDATE('Date'[Date]),
+						'Dates'[Date],
+						LASTDATE('Dates'[Date]),
 						-1,
 						YEAR
 					)
@@ -120,8 +120,8 @@ createOrReplace
 				CALCULATE(
 					AVERAGEX(
 						DATESINPERIOD(
-							'Date'[Date],
-							LASTDATE('Date'[Date]),
+							'Dates'[Date],
+							LASTDATE('Dates'[Date]),
 							-3,
 							MONTH
 						),
@@ -142,5 +142,3 @@ createOrReplace
 
 
 			
-
-
