@@ -1,0 +1,146 @@
+createOrReplace
+
+	table 'Time Intelligence'
+
+		calculationGroup
+			precedence: 10
+
+			calculationItem 'Current Period' =
+				SELECTEDMEASURE()
+				
+
+			calculationItem 'Previous Year' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					SAMEPERIODLASTYEAR('Date'[Date])
+				)
+				
+					
+
+			calculationItem 'Year Over Year' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					SAMEPERIODLASTYEAR('Date'[Date])
+				)
+				
+					
+
+			calculationItem 'Year Over Year %' =
+				VAR CurrentValue = SELECTEDMEASURE()
+				VAR Previous_Year = 
+					CALCULATE(
+						SELECTEDMEASURE(),
+						SAMEPERIODLASTYEAR('Date'[Date])
+					)
+				RETURN
+					DIVIDE(CurrentValue - Previous_Year, Previous_Year)
+				
+					
+
+			calculationItem 'Year To Date' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					DATESYTD('Date'[Date])
+				)
+				
+					
+
+			calculationItem 'Previous Year YTD' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					DATESYTD('Date'[Date]),
+					SAMEPERIODLASTYEAR('Date'[Date])
+				)
+				
+					
+
+			calculationItem 'YTD vs PY YTD' =
+				VAR CurrentYTD = 
+					CALCULATE(
+						SELECTEDMEASURE(),
+						DATESYTD('Date'[Date])
+					)
+				VAR PreviousYTD = 
+					CALCULATE(
+						SELECTEDMEASURE(),
+						DATESYTD('Date'[Date]),
+						SAMEPERIODLASTYEAR('Date'[Date])
+					)
+				RETURN
+					DIVIDE(CurrentYTD - PreviousYTD, PreviousYTD)
+				
+					
+
+			calculationItem 'Month To Date' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					DATESMTD('Date'[Date])
+				)
+				
+					
+
+			calculationItem 'Quarter To Date' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					DATESQTD('Date'[Date])
+				)
+				
+					
+
+			calculationItem 'Previous Month' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					DATEADD('Date'[Date], -1, MONTH)
+				)
+				
+					
+
+			calculationItem 'Previous Quarter' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					DATEADD('Date'[Date], -1, QUARTER)
+				)
+				
+					
+
+			calculationItem 'Moving Annual Total' =
+				CALCULATE(
+					SELECTEDMEASURE(),
+					DATESINPERIOD(
+						'Date'[Date],
+						LASTDATE('Date'[Date]),
+						-1,
+						YEAR
+					)
+				)
+				
+					
+
+			calculationItem '3 Month Moving Average' =
+				CALCULATE(
+					AVERAGEX(
+						DATESINPERIOD(
+							'Date'[Date],
+							LASTDATE('Date'[Date]),
+							-3,
+							MONTH
+						),
+						SELECTEDMEASURE()
+					)
+				)
+				
+					
+
+		column Name
+			dataType: string
+			sourceColumn: Name
+
+		column Ordinal
+			dataType: int64
+			sourceColumn: Ordinal
+			isHidden
+
+========================================================================================================1================================================================================================================
+			
+
+
